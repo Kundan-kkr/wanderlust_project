@@ -122,9 +122,9 @@ main()
     });
     */
 
-    /*app.get("/", (req,res) => {
-        res.send("Hi, I am root!");
-    });*/
+    app.get("/", (req,res) => {
+        res.redirect("/listings");
+    });
 
 
    /* app.get("/testlisting", async(req, res) => {
