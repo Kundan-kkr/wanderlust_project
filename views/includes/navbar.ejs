@@ -1,4 +1,5 @@
 <style>
+  /* Desktop Responsive */
   .flex{
     display: flex;
     align-items: center;
@@ -25,24 +26,75 @@
     font-size: 1rem;
     text-align: center;
   }
+  .explore-mobile{
+    display: none;
+  }
+
+  /* Mobile Responsive Fix */
+  @media (max-width: 768px) {
+    .navbar-collapse {
+      background-color: white; /* Menu ke piche background */
+      padding: 3rem;
+      margin-left: -1rem !important;
+      margin-right: -1rem !important;
+      border-radius: 10px;
+    }
+    .flex {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+    .search-inp {
+      width: 100% !important;
+      margin-top: 1rem !important; /* Mobile par gap adjust */
+      padding: 0.5rem !important;
+    }
+    .search-btn {
+      width: 100% !important;
+      margin-top: 0 !important;
+      padding: 0.5rem !important;
+    }
+    .nav-link {
+      padding: 10px 0 !important;
+      /*border-bottom: 1px solid #eee; /* Links ke beech line */
+   } 
+    .explore-mobile {
+        display: inline-block !important;
+        margin-left: 1rem !important;
+        position: relative !important;
+        bottom: 6px !important;
+        font-size: 1.25rem !important;
+        font-weight: 600 !important;
+        color: #fe424d !important;
+        font-family: 'Nunito Sans', sans-serif !important;
+        letter-spacing: -1px !important;
+      }
+    .ram {
+      display: none !important;
+    }
+}
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top" >
   <div class="container-fluid">
-   <a class="navbar-brand airbnb-brand" href="/listings"><i class="fa-brands fa-airbnb"></i></a>
+    <a class="navbar-brand airbnb-brand" href="/listings">
+      <i class="fa-brands fa-airbnb"></i>
+      <span class="explore-mobile">Explore</span>
+    </a>
     <button class="navbar-toggler" 
     type="button" data-bs-toggle="collapse"
      data-bs-target="#navbarNavAltMarkup" >
       <span class="navbar-toggler-icon"></span>
     </button>
+  
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+      <div class="navbar-nav ram">
         <a class="nav-link explore" href="/listings">Explore</a>
       </div>
       <div class="navbar-nav ms-auto">
-        <form class="flex"  role="search">
+        <form class="flex"  role="search" action="/listings" method="GET">
           <input class="form-control me-2 search-inp" 
                  type="search" 
+                 name="search"
                  placeholder="Search Destinations"/>
           <button class="btn search-btn" 
                   type="submit">
@@ -50,7 +102,7 @@
           </button>
         </form>
       </div>  
-       <div class="navbar-nav ms-auto">
+       <div class="navbar-nav ms-auto align-items-center">
         <a class="nav-link" href="/listings/new">Become a Host</a>
         <% if(!currentUser) { %>
         <a class="nav-link "  href="/signup"><b>Sign Up</b></a>

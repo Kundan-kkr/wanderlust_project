@@ -4,9 +4,31 @@ const geocoder = require("../utils/geocoder");
 
 
 module.exports.indexRoute= async (req , res) => {
-        const allListings=await Listing.find({});
-        /*console.log(allListings);*/
-        res.render("listings/index.ejs", {allListings});
+      let { search, category } = req.query;
+      let filter = {};
+
+  //  Search filter
+      if (search) {
+          filter.$or = [
+            { title: { $regex: search, $options: "i" } },
+            { location: { $regex: search, $options: "i" } }
+          ];
+      }
+
+  //  Category filter
+      if (category) {
+         filter.category = category;
+      }
+
+      let allListings = await Listing.find(filter);
+
+      if (!allListings.length) {
+          req.flash("error", "Oops! No homes found for this destination.");
+          return res.redirect("/listings");
+        }
+
+    /*console.log(allListings);*/
+    res.render("listings/index.ejs", {allListings});
 };
 
 //New route

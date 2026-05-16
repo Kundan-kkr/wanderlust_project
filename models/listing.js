@@ -7,6 +7,23 @@ const listingSchema=new Schema({
         type:String,
         required:true,
     },
+    category: {
+        type: String,
+        enum: [
+            "Trending",
+            "Rooms",
+            "Iconic Cities",
+            "Resorts",
+            "Mountains",
+            "Castles",
+            "Beachfront",
+            "Campgrounds",
+            "Arctic",
+            "City Escape",
+            "Domes"
+        ],
+        required: true
+    },
     description:String,
 
     image: {
@@ -38,8 +55,7 @@ const listingSchema=new Schema({
             required:true,
         },
     },
-    
-
+   
 });
 
 

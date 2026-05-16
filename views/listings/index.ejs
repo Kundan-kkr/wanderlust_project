@@ -17,7 +17,11 @@
             text-align: center;
             margin-right: 2rem;
             margin-top: 2rem;
-            opacity: 0.7;
+            text-decoration: none;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            opacity: 0.6;
           }
           .filter:hover{
             opacity: 1;
@@ -38,55 +42,76 @@
             display: flex;
             align-items: center;
           }
+          .taxx-toggle{
+            display: none;
+          }
+      
+  @media (max-width:768px){
+     .taxx-toggle{
+            width: fit-content;
+            border: 1px solid black;
+            border-radius: 1rem;
+            height: 2rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            margin-left: auto !important;
+            margin-right: 1rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center !important;
+          }
+          .tax-toggle{
+            display: none;
+          }
+  }
     </style>
 
-
-    <div id="filter">
-      <div class="filter">
+  <div id="filter" class="d-flex flex-nowrap overflow-auto">
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-fire"></i></div>
-        <p>Trending</p>
-      </div>
-      <div class="filter">
+          <p>Trending</p>
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-bed"></i></i></div>
         <p>Rooms</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-mountain-city"></i></i></div>
         <p>Iconic Cities</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-building-columns"></i></i></div>
         <p>Resorts</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-mountain"></i></i></i></div>
         <p>Mountains</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-brands fa-fort-awesome"></i></i></div>
         <p>Castles</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-person-swimming"></i></i></i></div>
         <p>Beachfront</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-campground"></i></div>
         <p>Campgrounds</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-snowflake"></i></i></div>
         <p>Arctic</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-tree-city"></i></div>
         <p>City Escape</p>
-      </div>
-      <div class="filter">
+      </a>
+      <a href="/listings?category=Trending" class="filter">
         <div><i class="fa-solid fa-landmark-dome"></i></div>
         <p>Domes</p>
-      </div>
-      
+      </a>
+
       <div class="tax-toggle">
         <div class="form-check-reverse form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
@@ -95,9 +120,16 @@
           </label>
         </div>
       </div>
+  </div>
 
-
-    </div>
+  <div class="taxx-toggle">
+        <div class="form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="taxSwitchMobile">
+          <label class="form-check-label" for="taxSwitchMobile">
+            Total Taxes
+          </label>
+        </div>
+  </div>
 
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
         <% for(let listing of allListings) { %>
@@ -138,16 +170,21 @@
 <% } %>
 </body>
 <script>
-  let taxSwitch = document.getElementById("switchCheckDefault");
-  taxSwitch.addEventListener("click" , () => {
-  //  console.log("clicked");
+  let taxSwitchDesktop = document.getElementById("switchCheckDefault");
+  let taxSwitchMobile = document.getElementById("taxSwitchMobile");
+
+  taxSwitchDesktop.addEventListener("change", applyTax);
+  taxSwitchMobile.addEventListener("change", applyTax);
+
+  function applyTax() {
     let taxInfo = document.getElementsByClassName("tax-info");
+    let isChecked = this.checked;
     for(info of taxInfo){
-      if(info.style.display != "inline"){
+      if(isChecked){
         info.style.display = "inline";
       } else {
         info.style.display = "none";
       }
     }
-  });
+  };
   </script>

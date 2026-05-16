@@ -106,7 +106,7 @@ main()
     //   console.log(res.locals.success); 
         res.locals.error=req.flash("error"); // here error is used in flash.ejs file in Includes folder
     //   console.log(res.locals.error);
-        res.locals.currentUser=req.user; // here currentUser is used in navbar.ejs file in Includes folder to check if the user is logged in or not. If the user is logged in, then we can access the user object in the req.user property, and we can set it to the currentUser variable in the response locals, so that we can access it in the views.
+        res.locals.currentUser=req.user || null; // here currentUser is used in navbar.ejs file in Includes folder to check if the user is logged in or not. If the user is logged in, then we can access the user object in the req.user property, and we can set it to the currentUser variable in the response locals, so that we can access it in the views.
         next();
     });
 /*

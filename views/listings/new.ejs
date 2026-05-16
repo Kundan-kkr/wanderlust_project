@@ -1,7 +1,7 @@
 <% layout("/layouts/boilerplate") -%>
 <body>
     <div class="row" mt-3>
-        <div class="col-8 offset-2">
+        <div class="col-12 col-md-8 offset-md-2 new-form">
             <br /> 
             <h3> Create a New Listing </h3>
             <form method="POST" 
@@ -10,18 +10,68 @@
                   class="needs-validation"
                   encType="multipart/form-data"
             >
-                <div class="mb-3">
-                    <label for="title" class="form-label">
-                        Title 
-                    </label>
-                    <input  name="listing[title]" 
-                            placeholder="Add a catchy title" 
-                            type="text" 
-                            class="form-control" 
-                            required/>
-                    <div class="valid-feedback">Title looks good!</div>
-                </div>
-          
+            <div class="mb-3"> 
+                <label for="title" class="form-label"> 
+                    Title 
+                </label> 
+                <input name="listing[title]"
+                       placeholder="Add a catchy title" 
+                       type="text" class="form-control" 
+                       required
+                    /> 
+                <div class="valid-feedback">Title looks good!</div> 
+            </div>
+
+            <div class="mb-3">
+                <label for="category" class="form-label">
+                    Category
+                </label>
+                <select
+                    name="listing[category]"
+                    id="category"
+                    class="form-select"
+                    required 
+                >
+                    <option value="" selected disabled>
+                        Select Category
+                    </option>
+                    <option value="Trending">
+                        Trending
+                    </option>
+                    <option value="Rooms">
+                        Rooms
+                    </option>
+                    <option value="Iconic Cities">
+                        Iconic Cities
+                    </option>
+                    <option value="Resorts">
+                        Resorts
+                    </option>
+                    <option value="Mountains">
+                        Mountains
+                    </option>
+                    <option value="Castles">
+                        Castles
+                    </option>
+                    <option value="Beachfront">
+                        Beachfront
+                    </option>
+                    <option value="Campgrounds">
+                        Campgrounds
+                    </option>
+                    <option value="Arctic">
+                        Arctic
+                    </option>
+                    <option value="City Escape">
+                        City Escape
+                    </option>
+                    <option value="Domes">
+                        Domes
+                    </option>
+                </select>
+                <div class="invalid-feedback">Please select a category</div>
+            </div>
+
                  <div class="mb-3">
                     <label for="description" class="form-label">
                         Description 
